@@ -11,7 +11,7 @@ public class UserRepository : IUserRepository
     public UserRepository(IConfiguration configuration)
     {
         _connectionString = configuration.GetConnectionString("DefaultConnection") 
-            ?? throw new ArgumentNullException("Connection string not found");
+            ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found");
     }
 
     public async Task<User?> GetByUsernameAsync(string username)
